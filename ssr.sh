@@ -273,10 +273,10 @@ INSTALL
 GET_SERVER_IP
 
 echo "####################################################################
-# GitHub  #  https://github.com/mmmwhy/ss-panel-and-ss-py-mu       #
-# GitHub  #  https://github.com/qinghuas/ss-panel-and-ss-py-mu     #
-# Edition #  V.3.1.6 2017-12-13                                    #
-# From    #  @mmmwhy @qinghuas                                     #
+# GitHub  #  就不告诉你                                             #
+# GitHub  #  就不告诉你                                             #
+# Edition #  V.3.1.6 2019-01-10                                    #
+# From    #  听风解语                                               #
 ####################################################################
 # [ID]  [TYPE]  # [DESCRIBE]                                       #
 ####################################################################
