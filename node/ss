@@ -1,0 +1,51 @@
+#!/bin/bash
+
+Edit_Node_Info(){
+	read -p "(1/3)请设置新的前端地址:" Front_end_address
+	read -p "(2/3)请设置新的节点ID:" Node_ID
+	read -p "(3/3)请设置新的Mukey:" Mukey
+	
+	if [[ ${Mukey} = '' ]];then
+		Mukey='mupass';echo "emm,我们已将Mukey设置为:mupass"
+	fi
+	
+	sed -i "17c WEBAPI_URL = \'${Front_end_address}\'" /root/shadowsocks/userapiconfig.py
+	sed -i "2c NODE_ID = ${Node_ID}" /root/shadowsocks/userapiconfig.py
+	sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /root/shadowsocks/userapiconfig.py
+	
+	bash /root/shadowsocks/stop.sh
+	bash /root/shadowsocks/run.sh
+	echo "新设置已生效."
+}
+
+Service_Management_Options=$1
+
+if [[ ! -z ${Service_Management_Options} ]];then
+
+	#start|stop|restart|check|edit|debug|update
+	if [[ ${Service_Management_Options} = "start" ]];then
+		bash /root/shadowsocks/run.sh;echo "已启动ssr服务."
+	elif [[ ${Service_Management_Options} = "stop" ]];then
+		bash /root/shadowsocks/stop.sh;echo "已停止ssr服务."
+	elif [[ ${Service_Management_Options} = "restart" ]];then
+		bash /root/shadowsocks/stop.sh
+		bash /root/shadowsocks/run.sh
+		echo "已重启ssr服务."
+	elif [[ ${Service_Management_Options} = "check" ]];then
+		echo "进程信息如下:";ps aux | grep server.py
+	elif [[ ${Service_Management_Options} = "edit" ]];then
+		Edit_Node_Info
+	elif [[ ${Service_Management_Options} = "debug" ]];then
+		bash /root/shadowsocks/stop.sh
+		python /root/shadowsocks/server.py
+	elif [[ ${Service_Management_Options} = "update" ]];then
+		wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/qinghuas/ss-panel-and-ss-py-mu/master/node/ss"
+		chmod 777 /usr/bin/shadowsocks
+		echo "Update Done."
+	fi
+	
+else
+	clear;echo "shadowsocks {start|stop|restart|check|edit|debug|update}"
+fi
+
+#END 2017-12-11 13:42
