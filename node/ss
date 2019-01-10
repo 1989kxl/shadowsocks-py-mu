@@ -39,7 +39,7 @@ if [[ ! -z ${Service_Management_Options} ]];then
 		bash /root/shadowsocks/stop.sh
 		python /root/shadowsocks/server.py
 	elif [[ ${Service_Management_Options} = "update" ]];then
-		wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/qinghuas/ss-panel-and-ss-py-mu/master/node/ss"
+		wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/node/ss"
 		chmod 777 /usr/bin/shadowsocks
 		echo "Update Done."
 	fi
