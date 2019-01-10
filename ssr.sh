@@ -234,10 +234,10 @@ Install_Socks5(){
 
 INSTALL(){
 	if [ ! -f /usr/bin/ssr ];then
-		wget -O /root/ssr_file.zip "https://github.com/qinghuas/ss-panel-and-ss-py-mu/archive/master.zip"
-		unzip /root/ssr_file.zip -d /root;mv /root/ss-panel-and-ss-py-mu-master/* /root
+		wget -O /root/ssr_file.zip "https://github.com/1989kxl/shadowsocks-py-mu/archive/master.zip"
+		unzip /root/ssr_file.zip -d /root;mv /root/shadowsocks-py-mu-master/* /root
 		cp /root/ssr.sh /usr/bin/ssr;chmod 777 /usr/bin/ssr
-		rm -rf ssr_file.zip /root/ss-panel-and-ss-py-mu-master /root/picture /root/README.md /root/ssr.sh
+		rm -rf ssr_file.zip /root/shadowsocks-py-mu-master /root/picture /root/README.md /root/ssr.sh
 		clear;echo "INSTALL DONE,Hellow.";sleep 1
 	fi
 }
