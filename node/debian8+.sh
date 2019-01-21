@@ -32,8 +32,8 @@ install_node_for_debian(){
         tar xf libsodium-1.0.17.tar.gz && cd libsodium-1.0.17
         ./configure && make -j2 && make install
         ldconfig
-        cd .. && rm -f libsodium-1.0.10.tar.gz && rm -rf libsodium-1.0.17
-        git clone -b manyuser https://github.com/chiakge/shadowsocks.git
+        cd .. && rm -f libsodium-1.0.17.tar.gz && rm -rf libsodium-1.0.17
+        git clone -b manyuser https://github.com/1989kxl/shadowsocks.git
         cd shadowsocks
         pip install --upgrade setuptools
         pip install -r requirements.txt
