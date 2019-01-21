@@ -1,5 +1,7 @@
 #!/bin/bash
-
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+export PATH
+clear
 Shut_down_iptables(){
 	apt-get -y install iptables iptables-services
 	iptables -F;iptables -X
