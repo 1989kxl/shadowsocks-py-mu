@@ -22,11 +22,11 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 cd /root
 apt-get update
 apt-get -y install build-essential wget python-dev libffi-dev openssl python-pip libssl-dev zip unzip git
-wget https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz
-tar xf libsodium-1.0.17.tar.gz && cd libsodium-1.0.17
+wget https://github.com/1989kxl/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
+tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
 ./configure && make -j2 && make install
 ldconfig
-cd .. && rm -f libsodium-1.0.17.tar.gz && rm -rf libsodium-1.0.17
+cd .. && rm -f libsodium-1.0.10.tar.gz && rm -rf libsodium-1.0.10
 git clone -b manyuser https://github.com/1989kxl/shadowsocks.git
 cd shadowsocks
 pip install --upgrade setuptools
@@ -35,9 +35,9 @@ cp apiconfig.py userapiconfig.py
 cp config.json user-config.json
 chmod +x *.sh
 	
-	sed -i "17c WEBAPI_URL = \'${Front_end_address}\'" /root/shadowsocks/userapiconfig.py
-	sed -i "2c NODE_ID = ${Node_ID}" /root/shadowsocks/userapiconfig.py
-	sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /root/shadowsocks/userapiconfig.py
+	sed -i "17c WEBAPI_URL = \'${Front_end_address}\'" /../shadowsocks/userapiconfig.py
+	sed -i "2c NODE_ID = ${Node_ID}" /../shadowsocks/userapiconfig.py
+	sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /../shadowsocks/userapiconfig.py
 
 
 
