@@ -41,8 +41,8 @@ install_node_for_debian(){
         cp config.json user-config.json
         chmod +x *.sh
         sed -i "17c WEBAPI_URL = \'${Front_end_address}\'" /root/shadowsocks/userapiconfig.py
-	    sed -i "2c NODE_ID = ${Node_ID}" /root/shadowsocks/userapiconfig.py
-	    sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /root/shadowsocks/userapiconfig.py
+	sed -i "2c NODE_ID = ${Node_ID}" /root/shadowsocks/userapiconfig.py
+	sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /root/shadowsocks/userapiconfig.py
 }
 
 
