@@ -33,6 +33,7 @@ install_node_for_debian(){
         ./configure && make -j2 && make install
         ldconfig
         cd .. && rm -f libsodium-1.0.17.tar.gz && rm -rf libsodium-1.0.17
+	wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/node/ss";chmod 777 /usr/bin/shadowsocks
         git clone -b manyuser https://github.com/1989kxl/shadowsocks.git
         cd shadowsocks
         pip install --upgrade setuptools
