@@ -7,7 +7,9 @@ yum -y install git wget curl zip unzip screen;wget "https://raw.githubuserconten
 Debian
 ---
 ```
-apt-get -y install git wget curl zip unzip screen;wget "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/ssr.sh";bash ssr.sh
+wget -N --no-check-certificate "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/ssr.sh"
+chmod +x ssr.sh
+./ssr.sh
 ```
 
 Select Options
