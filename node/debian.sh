@@ -2,14 +2,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 clear
-Shut_down_iptables(){
-	apt-get -y install iptables iptables-services
-	iptables -F;iptables -X
-	iptables -I INPUT -p tcp -m tcp --dport 22:65535 -j ACCEPT
-	iptables -I INPUT -p udp -m udp --dport 22:65535 -j ACCEPT
-	iptables-save > /etc/sysconfig/iptables
-	echo 'iptables-restore /etc/sysconfig/iptables' >> /etc/rc.local
-}
+
 
 Setting_node_information(){
 	clear;echo "设定服务端信息:"
@@ -50,4 +43,4 @@ install_node_for_debian(){
 
 Setting_node_information
 install_node_for_debian
-Shut_down_iptables
+
