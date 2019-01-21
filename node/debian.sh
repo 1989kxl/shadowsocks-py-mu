@@ -27,16 +27,21 @@ Setting_node_information(){
 }
 
 install_node_for_debian(){
-	apt-get -y update;apt-get install -y wget curl git lsof python-pip build-essential
-	cd /root;wget "https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz"
-	tar xf /root/libsodium-1.0.17.tar.gz;cd /root/libsodium-1.0.17;./configure;make -j2;make install;cd /root
-	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf;ldconfig
-	
-	pip install cymysql requests -i https://pypi.org/simple/
-	wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/node/ss";chmod 777 /usr/bin/shadowsocks
-	git clone -b manyuser https://github.com/1989kxl/shadowsocks.git "/root/shadowsocks"
-	cd shadowsocks;chmod +x *.sh;pip install -r requirements.txt -i https://pypi.org/simple/
-	cp apiconfig.py userapiconfig.py;cp config.json user-config.json
+	apt-get -y update
+	cd /root
+	apt-get -y install build-essential wget python-dev libffi-dev openssl python-pip libssl-dev zip unzip git
+        wget https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz
+        tar xf libsodium-1.0.17.tar.gz && cd libsodium-1.0.17
+        ./configure && make -j2 && make install
+        ldconfig
+        cd .. && rm -f libsodium-1.0.17.tar.gz && rm -rf libsodium-1.0.17
+        git clone -b manyuser https://github.com/1989kxl/shadowsocks.git
+        cd shadowsocks
+        pip install --upgrade setuptools
+        pip install -r requirements.txt
+        cp apiconfig.py userapiconfig.py
+        cp config.json user-config.json
+        chmod +x *.sh
 	
 	sed -i "17c WEBAPI_URL = \'${Front_end_address}\'" /root/shadowsocks/userapiconfig.py
 	sed -i "2c NODE_ID = ${Node_ID}" /root/shadowsocks/userapiconfig.py
