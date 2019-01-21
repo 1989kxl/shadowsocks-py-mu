@@ -240,6 +240,18 @@ Install_systemctl(){
 	systemctl enable ssr_node && systemctl start ssr_node
 }
 
+Install_supervisor(){
+        apt-get install supervisor -y
+        echo "[program:ssr]
+        command=python /root/shadowsocks/server.py 
+        autorestart=true
+        autostart=true
+        user=root" > /etc/supervisor/conf.d/ssr.conf
+        echo "ulimit -n 1024000" >> /etc/default/supervisor
+        /etc/init.d/supervisor restart
+	supervisorctl restart ssr
+}
+
 INSTALL(){
 	if [ ! -f /usr/bin/ssr ];then
 		wget -O /root/ssr_file.zip "https://github.com/1989kxl/shadowsocks-py-mu/archive/master.zip"
@@ -283,7 +295,7 @@ GET_SERVER_IP
 echo "####################################################################
 # GitHub  #  就不告诉你                                             #
 # GitHub  #  就不告诉你                                             #
-# Edition #  V.3.1.6 2019-01-10                                    #
+# Edition #  V.3.1.6 2019-01-22                                    #
 # From    #  听风解语  anynode                                      #
 ####################################################################
 # [ID]  [TYPE]  # [DESCRIBE]                                       #
@@ -292,15 +304,16 @@ echo "####################################################################
 # [2] [Install] # [SS NODE] AND [BBR]                              #
 # [3] [Change]  # [SS NODE INOF]                                   #
 # [4] [Install] # [SS NODE]                                        #
-# [5] [Install] # [BBR] 
-# [6] [Install] # [systemctl]
+# [5] [Install] # [BBR]                                            #
+# [6] [Install] # [Systemctl]                                      #
+# [7] [Install] # [Supervisor]                                     #
 ####################################################################
-# [a]检查BBR状态 [b]安装/执行路由追踪 [c]Speedtest/UnixBench/bench #
-# [d]更换镜像源 [e]安装/检查 Fail2ban [f]安装/执行 安全狗          #   
-# [g]卸载阿里云云盾 [h]安装/卸载 锐速 [i]Nginx 管理脚本            #
-# [j]安装纯净系统 [k]安装Aria2 [l]安装Server Status [m]安装Socks5  #
+# [a]检查BBR状态 [b]安装/执行路由追踪 [c]Speedtest/UnixBench/bench   #
+# [d]更换镜像源 [e]安装/检查 Fail2ban [f]安装/执行 安全狗             #   
+# [g]卸载阿里云云盾 [h]安装/卸载 锐速 [i]Nginx 管理脚本               #
+# [j]安装纯净系统 [k]安装Aria2 [l]安装Server Status [m]安装Socks5    #
 ####################################################################
-# [x]重新加载 [y]更新脚本 [z]删除脚本 [about]关于脚本              #
+# [x]重新加载 [y]更新脚本 [z]删除脚本 [about]关于脚本                 #
 # ${SERVER_IP_INFO}
 ####################################################################"
 read -p "PLEASE SELECT OPTIONS:" SSR_OPTIONS
@@ -319,6 +332,8 @@ clear;case "${SSR_OPTIONS}" in
 	Install_BBR;;
 	6)
 	Install_systemctl;;
+	7)
+	Install_supervisor;;
 	a)
 	Check_BBR_installation_status;;
 	b)
