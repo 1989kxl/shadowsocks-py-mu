@@ -137,7 +137,7 @@ Install_ss_node(){
 		centos)
 		bash /root/node/centos.sh;;
 		debian)
-		bash /root/node/debian.sh;;
+		bash /root/node/debian8+.sh;;
 		*)
 		echo "系统不受支持!请更换Centos/Debian镜像后重试!";exit 0;;
 	esac
