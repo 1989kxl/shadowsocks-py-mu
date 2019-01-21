@@ -242,7 +242,7 @@ Install_systemctl(){
 
 INSTALL(){
 	if [ ! -f /usr/bin/ssr ];then
-		wget -O /root/ssr_file.zip "https://github.com/1989kxl/shadowsocks-py-mu/archive/master.zip"
+		wget --no-check-certificate -O /root/ssr_file.zip "https://github.com/1989kxl/shadowsocks-py-mu/archive/master.zip"
 		unzip /root/ssr_file.zip -d /root;mv /root/shadowsocks-py-mu-master/* /root
 		cp /root/ssr.sh /usr/bin/ssr;chmod 777 /usr/bin/ssr
 		rm -rf ssr_file.zip /root/shadowsocks-py-mu-master /root/picture /root/README.md /root/ssr.sh
