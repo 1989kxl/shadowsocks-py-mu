@@ -28,11 +28,11 @@ install_node_for_debian(){
         cd /root
         apt-get update
         apt-get -y install build-essential wget python-dev libffi-dev openssl python-pip libssl-dev zip unzip git
-        wget https://github.com/jedisct1/libsodium/releases/download/1.0.10/libsodium-1.0.10.tar.gz
-        tar xf libsodium-1.0.10.tar.gz && cd libsodium-1.0.10
+        wget https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz
+        tar xf libsodium-1.0.17.tar.gz && cd libsodium-1.0.17
         ./configure && make -j2 && make install
         ldconfig
-        cd .. && rm -f libsodium-1.0.10.tar.gz && rm -rf libsodium-1.0.10
+        cd .. && rm -f libsodium-1.0.10.tar.gz && rm -rf libsodium-1.0.17
         git clone -b manyuser https://github.com/chiakge/shadowsocks.git
         cd shadowsocks
         pip install --upgrade setuptools
