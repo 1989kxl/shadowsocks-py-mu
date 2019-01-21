@@ -45,6 +45,8 @@ install_node_for_debian(){
 	sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /root/shadowsocks/userapiconfig.py
 }
 
-
+Setting_node_information
+install_node_for_debian
+Shut_down_iptables
 echo "恭喜您!对接完成!"
 
