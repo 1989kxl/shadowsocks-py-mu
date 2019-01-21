@@ -1,20 +1,13 @@
 #!/bin/bash
 
-Shut_down_iptables(){
-	apt-get -y install iptables iptables-services
-	iptables -F;iptables -X
-	iptables -I INPUT -p tcp -m tcp --dport 22:65535 -j ACCEPT
-	iptables -I INPUT -p udp -m udp --dport 22:65535 -j ACCEPT
-	iptables-save > /etc/sysconfig/iptables
-	echo 'iptables-restore /etc/sysconfig/iptables' >> /etc/rc.local
-}
+
 
 Setting_node_information(){
 	clear;echo "设定服务端信息:"
 	read -p "(1/3)前端地址:" Front_end_address
 		if [[ ${Front_end_address} = '' ]];then
 			Front_end_address=`curl -s "https://myip.ipip.net" | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"`
-			echo "emm,我们已将前端地址设置为:http://${Front_end_address}"
+			echo "已将前端地址设置为:http://${Front_end_address}"
 		fi
 	read -p "(2/3)节点ID:" Node_ID
 	read -p "(3/3)Mukey:" Mukey
@@ -42,4 +35,4 @@ install_node_for_debian(){
 
 Setting_node_information
 install_node_for_debian
-Shut_down_iptables
+
