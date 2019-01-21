@@ -232,6 +232,14 @@ Install_Socks5(){
 		bash ss5.sh
 }
 
+Install_systemctl(){
+        echo "Writting system config..."
+	wget https://raw.githubusercontent.com/SuicidalCat/Airport-toolkit/master/ssr_node.service
+	chmod 754 ssr_node.service && mv ssr_node.service /usr/lib/systemd/system
+	echo "Starting SSR Node Service..."
+	systemctl enable ssr_node && systemctl start ssr_node
+}
+
 INSTALL(){
 	if [ ! -f /usr/bin/ssr ];then
 		wget -O /root/ssr_file.zip "https://github.com/1989kxl/shadowsocks-py-mu/archive/master.zip"
@@ -284,7 +292,8 @@ echo "####################################################################
 # [2] [Install] # [SS NODE] AND [BBR]                              #
 # [3] [Change]  # [SS NODE INOF]                                   #
 # [4] [Install] # [SS NODE]                                        #
-# [5] [Install] # [BBR]                                            #
+# [5] [Install] # [BBR] 
+# [6] [Install] # [systemctl]
 ####################################################################
 # [a]检查BBR状态 [b]安装/执行路由追踪 [c]Speedtest/UnixBench/bench #
 # [d]更换镜像源 [e]安装/检查 Fail2ban [f]安装/执行 安全狗          #   
@@ -308,6 +317,8 @@ clear;case "${SSR_OPTIONS}" in
 	Install_ss_node;;
 	5)
 	Install_BBR;;
+	6)
+	Install_systemctl;;
 	a)
 	Check_BBR_installation_status;;
 	b)
