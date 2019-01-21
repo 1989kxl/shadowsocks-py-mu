@@ -235,7 +235,7 @@ Install_Socks5(){
 Install_systemctl(){
         echo "Writting system config..."
 	wget https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/tools/ssr_node.service
-	chmod 754 ssr_node.service && mv ssr_node.service /usr/lib/systemd/system
+	mv ssr_node.service /usr/lib/systemd/system && chmod 754 /usr/lib/systemd/system/ssr_node.service
 	echo "Starting SSR Node Service..."
 	systemctl enable ssr_node && systemctl start ssr_node
 }
