@@ -26,8 +26,8 @@ Setting_node_information(){
 
 install_node_for_debian(){
 	apt-get -y update;apt-get install -y wget curl git lsof python-pip build-essential
-	cd /root;wget "http://ssr-1252089354.coshk.myqcloud.com/libsodium-1.0.15.tar.gz"
-	tar xf /root/libsodium-1.0.15.tar.gz;cd /root/libsodium-1.0.15;./configure;make -j2;make install;cd /root
+	cd /root;wget "https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz"
+	tar xf /root/libsodium-1.0.17.tar.gz;cd /root/libsodium-1.0.17;./configure;make -j2;make install;cd /root
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf;ldconfig
 	
 	pip install cymysql requests -i https://pypi.org/simple/
