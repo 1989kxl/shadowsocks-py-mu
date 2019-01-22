@@ -241,15 +241,17 @@ Install_systemctl(){
 }
 
 Install_supervisor(){
-        apt-get install supervisor -y
-        echo "[program:ssr]
-        command=python /root/shadowsocks/server.py 
-        autorestart=true
-        autostart=true
-        user=root" > /etc/supervisor/conf.d/ssr.conf
-        echo "ulimit -n 1024000" >> /etc/default/supervisor
-        /etc/init.d/supervisor restart
-	supervisorctl restart ssr
+        	cat>/etc/supervisor/conf.d/ssr.conf<<EOF
+                [program:ssr]
+                command = python /root/shadowsocks/server.py
+                stdout_logfile = /var/log/ssmu.log
+                stderr_logfile = /var/log/ssmu.log
+                user = root
+                autostart = true
+                autorestart = true
+                EOF
+                /etc/init.d/supervisor restart
+	        supervisorctl restart ssr
 }
 
 INSTALL(){
