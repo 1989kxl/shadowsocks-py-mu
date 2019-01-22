@@ -247,13 +247,6 @@ Install_Socks5(){
 		bash ss5.sh
 }
 
-Install_systemctl(){
-        echo "Writting system config..."
-	wget https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/tools/ssr_node.service
-	chmod 754 ssr_node.service && mv ssr_node.service /usr/lib/systemd/system
-	echo "Starting SSR Node Service..."
-	systemctl enable ssr_node && systemctl start ssr_node
-}
 
 Install_supervisor(){
               #Setup_time=`date +"%Y-%m-%d %H:%M:%S"`;Install_the_start_time_stamp=`date +%s`
@@ -337,8 +330,8 @@ echo "####################################################################
 # [3] [Change]  # [SS NODE INOF]                                   #
 # [4] [Install] # [SS NODE]                                        #
 # [5] [Install] # [BBR]                                            #
-# [6] [Install] # [Systemctl]                                      #
-# [7] [Install] # [Supervisor]                                     #
+# [6] [Install] # [Supervisor]                                     #
+#                                                                  #
 ####################################################################
 # [a]检查BBR状态 [b]安装/执行路由追踪 [c]Speedtest/UnixBench/bench   #
 # [d]更换镜像源 [e]安装/检查 Fail2ban [f]安装/执行 安全狗             #   
@@ -363,8 +356,6 @@ clear;case "${SSR_OPTIONS}" in
 	5)
 	Install_BBR;;
 	6)
-	Install_systemctl;;
-	7)
 	Install_supervisor;;
 	a)
 	Check_BBR_installation_status;;
