@@ -242,14 +242,14 @@ Install_systemctl(){
 
 Install_supervisor(){
         	cat>/etc/supervisor/conf.d/ssr.conf<<EOF
-                [program:ssr]
-                command = python /root/shadowsocks/server.py
-                stdout_logfile = /var/log/ssmu.log
-                stderr_logfile = /var/log/ssmu.log
-                user = root
-                autostart = true
-                autorestart = true
-                EOF
+[program:ssr]
+command = python /root/shadowsocks/server.py
+stdout_logfile = /var/log/ssmu.log
+stderr_logfile = /var/log/ssmu.log
+user = root
+autostart = true
+autorestart = true
+EOF
                 /etc/init.d/supervisor restart
 	        supervisorctl restart ssr
 }
