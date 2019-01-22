@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#fonts color
+Green="\033[32m" 
+Red="\033[31m" 
+Yellow="\033[33m"
+GreenBG="\033[42;37m"
+RedBG="\033[41;37m"
+Font="\033[0m"
+
+
 Install_the_front(){
 	bash /root/node/front_end.sh
 }
@@ -242,17 +251,18 @@ Install_systemctl(){
 
 Install_supervisor(){
               #Setup_time=`date +"%Y-%m-%d %H:%M:%S"`;Install_the_start_time_stamp=`date +%s`
-	     system_os=`bash /root/tools/check_os.sh`
+	      system_os=`bash /root/tools/check_os.sh`
 	
            if [[ ${system_os} == "centos" ]];then
 		     yum -y install supervisor
 	   else
 		     apt-get install supervisor -y  
+		     mv -f /root/tools/supervisord.conf /etc/supervisor
+		     supervisor_conf_modify_debian
            fi
-                  supervisor_conf_modify_debian
+                  
 }
-		
-		
+				
 supervisor_conf_modify_debian(){
 echo "[program:ssr]
 command=python /root/shadowsocks/server.py 
@@ -261,8 +271,11 @@ autostart=true
 user=root" > /etc/supervisor/conf.d/ssr.conf
 echo "ulimit -n 1024000" >> /etc/default/supervisor
 /etc/init.d/supervisor restart
+supervisorctl reload
 supervisorctl restart ssr
-   
+sleep 2.5
+echo -e "${OK} ${GreenBG} supervisor 安装成功 ${Font}"
+
 }
 
 INSTALL(){
