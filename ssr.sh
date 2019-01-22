@@ -8,6 +8,12 @@ GreenBG="\033[42;37m"
 RedBG="\033[41;37m"
 Font="\033[0m"
 
+#notification information
+Info="${Green}[Info]${Font}"
+OK="${Green}[OK]${Font}"
+Error="${Red}[Error]${Font}"
+Notification="${Yellow}[Notification]${Font}"
+
 
 Install_the_front(){
 	bash /root/node/front_end.sh
