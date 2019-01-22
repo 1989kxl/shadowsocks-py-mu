@@ -263,11 +263,12 @@ Install_supervisor(){
                      supervisorctl restart ssr
                      sleep 2.5
 echo -e "${OK} ${GreenBG} supervisor 安装成功 ${Font}"
-echo -e "${OK} ${GreenBG}重启服务/etc/init.d/supervisor restart ${Font}"
-echo -e "${OK} ${GreenBG}启飞机supervisorctl restart ssr ${Font}"
-echo -e "${OK} ${GreenBG}服务状态supervisorctl status ${Font}"
-echo -e "${OK} ${GreenBG}重载配置supervisorctl reload ${Font}"
-echo -e "${OK} ${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
+echo -e "${GreenBG}管理命令如下 自行复制留存 ${Font}"
+echo -e "${GreenBG}重启服务/etc/init.d/supervisor restart ${Font}"
+echo -e "${GreenBG}重启飞机supervisorctl restart ssr ${Font}"
+echo -e "${GreenBG}服务状态supervisorctl status ${Font}"
+echo -e "${GreenBG}重载配置supervisorctl reload ${Font}"
+echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
 		     
 		              
 			
