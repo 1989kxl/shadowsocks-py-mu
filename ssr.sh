@@ -244,20 +244,25 @@ Install_supervisor(){
               #Setup_time=`date +"%Y-%m-%d %H:%M:%S"`;Install_the_start_time_stamp=`date +%s`
 	     system_os=`bash /root/tools/check_os.sh`
 	
-if [[ ${system_os} == "centos" ]];then
-		yum -y install supervisor
-	else
-		apt-get install supervisor -y  
+           if [[ ${system_os} == "centos" ]];then
+		     yum -y install supervisor
+	   else
+		     apt-get install supervisor -y  
+           fi
+                  supervisor_conf_modify_debian
+}
+		
+		
+supervisor_conf_modify_debian(){
 echo "[program:ssr]
 command=python /root/shadowsocks/server.py 
 autorestart=true
 autostart=true
 user=root" > /etc/supervisor/conf.d/ssr.conf
 echo "ulimit -n 1024000" >> /etc/default/supervisor
-supervisorctl reload
+/etc/init.d/supervisor restart
 supervisorctl restart ssr
-        fi
-              
+   
 }
 
 INSTALL(){
