@@ -241,6 +241,7 @@ Install_systemctl(){
 }
 
 Install_supervisor(){
+                apt-get install supervisor -y
         	cat>/etc/supervisor/conf.d/ssr.conf<<EOF
 [program:ssr]
 command = python /root/shadowsocks/server.py
