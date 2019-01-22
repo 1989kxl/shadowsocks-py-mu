@@ -248,16 +248,16 @@ if [[ ${system_os} == "centos" ]];then
 		yum -y install supervisor
 	else
 		apt-get install supervisor -y
-apt-get install supervisor -y
-echo "[program:ssr]
-command=python /root/shadowsocks/server.py 
-autorestart=true
-autostart=true
-user=root" > /etc/supervisor/conf.d/ssr.conf
-echo "ulimit -n 1024000" >> /etc/default/supervisor
-supervisorctl reload
-supervisorctl restart ssr
-fi
+
+                echo "[program:ssr]
+                command=python /root/shadowsocks/server.py 
+                autorestart=true
+                autostart=true
+                user=root" > /etc/supervisor/conf.d/ssr.conf
+                echo "ulimit -n 1024000" >> /etc/default/supervisor
+                supervisorctl reload
+                supervisorctl restart ssr
+        fi
               
 }
 
