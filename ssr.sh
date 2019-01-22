@@ -277,7 +277,6 @@ autostart=true
 user=root" > /etc/supervisor/conf.d/ssr.conf
 echo "ulimit -n 1024000" >> /etc/default/supervisor
 /etc/init.d/supervisor restart
-supervisorctl reload
 supervisorctl restart ssr
 sleep 2.5
 echo -e "${OK} ${GreenBG} supervisor 安装成功 ${Font}"
