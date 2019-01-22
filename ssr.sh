@@ -241,7 +241,13 @@ Install_systemctl(){
 }
 
 Install_supervisor(){
-              apt-get install supervisor -y
+              system_os=`bash /root/tools/check_os.sh`
+	      
+              case "${system_os}" in
+		centos)
+		bash /root/node/centos.sh;;
+		debian)
+		apt-get install supervisor -y
               echo "[program:ssr]
               command=python /root/shadowsocks/server.py 
               autorestart=true
@@ -249,7 +255,10 @@ Install_supervisor(){
               user=root" > /etc/supervisor/conf.d/ssr.conf
               echo "ulimit -n 1024000" >> /etc/default/supervisor
               supervisorctl reload
-              supervisorctl restart ssr
+              supervisorctl restart ssr;;
+		*)
+		echo "系统不受支持!请更换Centos/Debian镜像后重试!";exit 0;;
+              
 }
 
 INSTALL(){
