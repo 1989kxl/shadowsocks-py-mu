@@ -252,7 +252,6 @@ Install_supervisor(){
                 EOF
                 /etc/init.d/supervisor restart
 	        supervisorctl restart ssr
-		EOF
 }
 
 INSTALL(){
