@@ -266,7 +266,9 @@ Install_supervisor(){
 		     mv -f /root/tools/supervisord.conf /etc/supervisor
 		     supervisor_conf_modify_debian
 		     /etc/init.d/supervisor restart
+		     sleep 4
                      supervisorctl reload
+		     sleep 2
                      supervisorctl restart ssr
                      sleep 2.5
                      echo -e "${OK} ${GreenBG} supervisor 安装成功 ${Font}"
