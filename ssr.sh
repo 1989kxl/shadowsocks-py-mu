@@ -256,9 +256,10 @@ Install_supervisor(){
 	
            if [[ ${system_os} == "centos" ]];then
 		     yum -y install supervisor
-		     mv -f /root/tools/supervisord.conf /etc/supervisor
+		     mv -f /root/tools/supervisord.service /usr/lib/systemd/system
+		     mv -f /root/tools/supervisord.conf /etc
 		     supervisor_conf_modify_centos
-		     /etc/init.d/supervisor restart
+		     systemctl enable supervisord
 		     sleep 2
                      supervisorctl restart ssr
                      sleep 2.5
@@ -287,8 +288,8 @@ echo "[program:ssr]
 command=python /root/shadowsocks/server.py 
 autorestart=true
 autostart=true
-user=root" > /etc/supervisor/conf.d/ssr.conf
-echo "ulimit -n 1024000" >> /etc/default/supervisor
+user=root" > /etc/supervisord.conf
+echo "ulimit -n 1024000" >> /etc/supervisor
 
 }
 
