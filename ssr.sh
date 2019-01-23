@@ -138,7 +138,7 @@ Run_Speedtest_And_Bench_sh(){
 	read -p "执行Bench SH?[y/n]:" Bench_SH
 	case "${Bench_SH}" in
 	y)
-		wget -qO- https://raw.githubusercontent.com/1989kxl/script/master/superbench.sh | bash;;
+		wget -qO- https://raw.githubusercontent.com/oooldking/script/master/superbench.sh | bash;;
 	*)
 		echo "跳过.";echo;;
 	esac
