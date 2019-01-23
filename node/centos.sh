@@ -34,9 +34,9 @@ install_node_for_centos(){
 	#yum -y update
 	yum -y groupinstall "Development Tools"
 	yum -y install git gcc wget curl python-setuptools
-	wget "http://ssr-1252089354.coshk.myqcloud.com/get-pip.py"
+	wget "https://github.com/1989kxl/shadowsocks-py-mu/blob/master/tools/get-pip.py"
 	python get-pip.py;rm -rf python get-pip.py;mkdir python;cd python
-	wget "http://ssr-1252089354.coshk.myqcloud.com/python.zip";unzip python.zip
+	wget "https://github.com/1989kxl/shadowsocks-py-mu/blob/master/tools/python.zip";unzip python.zip
 	pip install *.whl;pip install *.tar.gz;cd /root;rm -rf python
 	pip install cymysql requests -i https://pypi.org/simple/
 	
