@@ -256,6 +256,13 @@ Install_supervisor(){
 	
            if [[ ${system_os} == "centos" ]];then
 		     yum -y install supervisor
+		     mv -f /root/tools/supervisord.conf /etc/supervisor
+		     supervisor_conf_modify_centos
+		     /etc/init.d/supervisor restart
+		     sleep 2
+                     supervisorctl restart ssr
+                     sleep 2.5
+
 	   else
 		     apt-get install supervisor -y  
 		     mv -f /root/tools/supervisord.conf /etc/supervisor
@@ -264,20 +271,27 @@ Install_supervisor(){
 		     sleep 2
                      supervisorctl restart ssr
                      sleep 2.5
+			
+           fi
 echo -e "${OK} ${GreenBG} supervisor 安装成功 ${Font}"
 echo -e "${GreenBG}管理命令如下 自行复制留存 ${Font}"
 echo -e "${GreenBG}重启服务/etc/init.d/supervisor restart ${Font}"
 echo -e "${GreenBG}重启飞机supervisorctl restart ssr ${Font}"
 echo -e "${GreenBG}服务状态supervisorctl status ${Font}"
 echo -e "${GreenBG}重载配置supervisorctl reload ${Font}"
-echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
-		     
-		              
-			
-           fi
-                  
+echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"             
 }
-				
+
+supervisor_conf_modify_centos(){
+echo "[program:ssr]
+command=python /root/shadowsocks/server.py 
+autorestart=true
+autostart=true
+user=root" > /etc/supervisor/conf.d/ssr.conf
+echo "ulimit -n 1024000" >> /etc/default/supervisor
+
+}
+
 supervisor_conf_modify_debian(){
 echo "[program:ssr]
 command=python /root/shadowsocks/server.py 
@@ -287,6 +301,7 @@ user=root" > /etc/supervisor/conf.d/ssr.conf
 echo "ulimit -n 1024000" >> /etc/default/supervisor
 
 }
+
 
 INSTALL(){
 	if [ ! -f /usr/bin/ssr ];then
