@@ -258,7 +258,6 @@ Install_supervisor(){
 		     yum -y install supervisor
 		     mv -f /root/tools/supervisord.service /usr/lib/systemd/system
 		     mv -f /root/tools/centos_supervisor/supervisord.conf /etc
-		     supervisor_conf_modify_centos
 		     systemctl enable supervisord
 		     sleep 2
                      supervisorctl restart ssr
