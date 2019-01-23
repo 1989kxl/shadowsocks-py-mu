@@ -1,1 +1,37 @@
+#!/bin/bash
 
+
+
+Setting_node_information(){
+	clear;echo "设定服务端信息:"
+	read -p "(1/3)前端地址:" Front_end_address
+		if [[ ${Front_end_address} = '' ]];then
+			Front_end_address=`curl -s "https://myip.ipip.net" | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"`
+			echo "已将前端地址设置为:http://${Front_end_address}"
+		fi
+	read -p "(2/3)节点ID:" Node_ID
+	read -p "(3/3)Mukey:" Mukey
+	if [[ ${Mukey} = '' ]];then
+		Mukey='mupass';echo "未设置该项,默认Mukey值为:mupass"
+	fi
+	echo;echo "Great！即将开始安装...";echo;sleep 2.5
+}
+
+install_node_for_debian(){
+	apt-get -y update;apt-get -y install build-essential wget python-dev libffi-dev python-pip openssl libssl-dev zip unzip git curl lsof
+	cd /root;wget https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz
+	tar xf /root/libsodium-1.0.17.tar.gz;cd /root/libsodium-1.0.17;./configure;make -j2;make install;cd /root
+	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf;ldconfig
+	pip install cymysql requests -i https://pypi.org/simple/
+	wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/node/ss";chmod 777 /usr/bin/shadowsocks
+	git clone -b manyuser https://github.com/1989kxl/shadowsocks.git "/root/shadowsocks"
+	cd shadowsocks;chmod +x *.sh;pip install --upgrade setuptools;pip install -r requirements.txt -i https://pypi.org/simple/
+	cp apiconfig.py userapiconfig.py;cp config.json user-config.json
+	
+	sed -i "17c WEBAPI_URL = \'${Front_end_address}\'" /root/shadowsocks/userapiconfig.py
+	sed -i "2c NODE_ID = ${Node_ID}" /root/shadowsocks/userapiconfig.py
+	sed -i "18c WEBAPI_TOKEN = \'${Mukey}\'" /root/shadowsocks/userapiconfig.py
+}
+
+Setting_node_information
+install_node_for_debian
