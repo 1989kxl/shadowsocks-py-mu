@@ -263,7 +263,10 @@ Install_supervisor(){
 		     sleep 2
                      supervisorctl restart ssr
                      sleep 2.5
-
+echo -e "${GreenBG}重启飞机supervisorctl restart ssr ${Font}"
+echo -e "${GreenBG}服务状态supervisorctl status ${Font}"
+echo -e "${GreenBG}重载配置supervisorctl reload ${Font}"
+echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
 	   else
 		     apt-get install supervisor -y  
 		     mv -f /root/tools/supervisord.conf /etc/supervisor
