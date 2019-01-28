@@ -4,6 +4,9 @@ Shut_down_iptables(){
 	iptables -F;iptables -X
 	iptables -I INPUT -p tcp -m tcp --dport 22:65535 -j ACCEPT
 	iptables -I INPUT -p udp -m udp --dport 22:65535 -j ACCEPT
+	iptables -I FORWARD -p tcp --dport 25 -j DROP
+        iptables -I INPUT -p tcp --dport 25 -j DROP
+        iptables -I OUTPUT -p tcp --dport 25 -j DROP
 	iptables-save > /etc/iptables
 echo '#!/bin/bash
 /sbin/iptables-restore < /etc/iptables' >> /etc/network/if-pre-up.d/iptables
