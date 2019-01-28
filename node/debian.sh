@@ -44,4 +44,4 @@ install_node_for_debian(){
 
 Setting_node_information
 install_node_for_debian
-
+Shut_down_iptables
