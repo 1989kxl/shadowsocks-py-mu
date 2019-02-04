@@ -92,20 +92,22 @@ Install_Serverspeeder(){
 }
 
 Uninstall_ali_cloud_shield(){
-	echo "请根据阿里云系统镜像安装环境,选项相应选项!"
-	echo "选项: [1]系统自控制台重装 [2]系统自快照/镜像恢复 [3]更换内核并安装LotServer"
-	read -p "请选择选项:" Uninstall_ali_cloud_shield_options
-	
-	case "${Uninstall_ali_cloud_shield_options}" in
-		1)
-		bash /root/tools/alibabacloud/New_installation.sh;;
-		2)
-		bash /root/tools/alibabacloud/Snapshot_image.sh;;
-		3)
-		bash /root/tools/alibabacloud/install.sh;;
-		*)
-		echo "选项不在范围!";exit 0;;
-	esac
+                           bash /root/tools/UninstallALiYD/uninstall.sh
+			   bash /root/tools/UninstallALiYD/quartz_uninstall.sh
+			   pkill aliyun-service
+                           rm -fr /etc/init.d/agentwatch /usr/sbin/aliyun-service
+                           rm -rf /usr/local/aegis*
+			   iptables -I INPUT -s 140.205.201.0/28 -j DROP
+                           iptables -I INPUT -s 140.205.201.16/29 -j DROP
+                           iptables -I INPUT -s 140.205.201.32/28 -j DROP
+                           iptables -I INPUT -s 140.205.225.192/29 -j DROP
+                           iptables -I INPUT -s 140.205.225.200/30 -j DROP
+                           iptables -I INPUT -s 140.205.225.184/29 -j DROP
+                           iptables -I INPUT -s 140.205.225.183/32 -j DROP
+                           iptables -I INPUT -s 140.205.225.206/32 -j DROP
+                           iptables -I INPUT -s 140.205.225.205/32 -j DROP
+                           iptables -I INPUT -s 140.205.225.195/32 -j DROP
+                           iptables -I INPUT -s 140.205.225.204/32 -j DROP
 }
 
 Change_System_Source(){
