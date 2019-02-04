@@ -108,6 +108,8 @@ Uninstall_ali_cloud_shield(){
                            iptables -I INPUT -s 140.205.225.205/32 -j DROP
                            iptables -I INPUT -s 140.205.225.195/32 -j DROP
                            iptables -I INPUT -s 140.205.225.204/32 -j DROP
+			   sleep 2
+			   echo -e "${OK} ${GreenBG} 卸载完毕,请用top查询相关进程 ${Font}"
 }
 
 Change_System_Source(){
