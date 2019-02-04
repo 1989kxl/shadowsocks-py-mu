@@ -276,14 +276,15 @@ echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
                      supervisorctl restart ssr
                      sleep 2.5
 			
-           fi
+        
 echo -e "${OK} ${GreenBG} supervisor 安装成功 ${Font}"
 echo -e "${GreenBG}管理命令如下 自行复制留存 ${Font}"
 echo -e "${GreenBG}重启服务/etc/init.d/supervisor restart ${Font}"
 echo -e "${GreenBG}重启飞机supervisorctl restart ssr ${Font}"
 echo -e "${GreenBG}服务状态supervisorctl status ${Font}"
 echo -e "${GreenBG}重载配置supervisorctl reload ${Font}"
-echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"             
+echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
+            fi
 }
 
 supervisor_conf_modify_centos(){
