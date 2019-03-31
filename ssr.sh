@@ -335,7 +335,7 @@ echo "ulimit -n 1024000" >> /etc/default/supervisor
 
 }
 
-SS NODE Sql Mod(){
+SS_NODE_Sql_Mod(){
                   bash /root/tools/shadowsocks_new.sh
 		  
 		  
@@ -451,7 +451,7 @@ clear;case "${SSR_OPTIONS}" in
 	6)
 	Install_supervisor;;
 	7)
-	SS NODE Sql Mod;;
+	SS_NODE_Sql_Mod;;
 	a)
 	Check_BBR_installation_status;;
 	b)
