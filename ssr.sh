@@ -165,7 +165,7 @@ Install_ss_node(){
 	
 	Unfile_number_limit
 	sleep 2.5
-	read -p "是否安装swap交换分区？(Y/n)" choice
+	read -p "是否安装swap交换分区,单位为M,一般为内存的2倍,不支持ovz？(Y/n)" choice
 	case "${choice}" in
 	y|Y) bash /root/tools/swap.sh;;
 	n|N) echo "跳过.";echo;;
