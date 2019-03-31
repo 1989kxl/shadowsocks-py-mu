@@ -335,6 +335,40 @@ echo "ulimit -n 1024000" >> /etc/default/supervisor
 
 }
 
+SS NODE Sql Mod(){
+                  bash /root/tools/shadowsocks_new.sh
+		  
+		  
+		  sleep 3
+		  
+		  
+		  Unfile_number_limit
+	sleep 2.5
+	read -p "是否安装swap交换分区,单位为M,一般为内存的2倍,不支持ovz？(Y/n)" choice
+	case "${choice}" in
+	y|Y) Add_swap_partition;;
+	n|N) echo "跳过.";echo;;
+	*) echo "跳过.";echo;;
+	esac
+	sleep 2.5
+	
+	read -p "是否安装fail2ban防火墙？(Y/n)" choice
+	case "${choice}" in
+	y|Y) Install_fail2ban;;
+	n|N) echo "跳过.";echo;;
+	*) echo "跳过.";echo;;
+	esac
+	sleep 2.5
+	
+	read -p "是否安装supervisor守护？(Y/n)" choice
+        case "${choice}" in
+	y|Y) Install_supervisor;;
+	n|N) echo "跳过.";echo;;
+	*) echo "跳过.";echo;;
+	esac
+	sleep 2.5 
+		  
+}
 
 INSTALL(){
 	if [ ! -f /usr/bin/ssr ];then
@@ -390,7 +424,7 @@ echo "####################################################################
 # [4] [Install] # [SS NODE]                                        #
 # [5] [Install] # [BBR]                                            #
 # [6] [Install] # [Supervisor]                                     #
-#                                                                  #
+# [7] [Install] # [SS NODE Sql Mod]                                #
 ####################################################################
 # [a]检查BBR状态 [b]安装/执行路由追踪 [c]Speedtest/UnixBench/bench  #
 # [d]更换镜像源 [e]安装/检查 Fail2ban [f]安装/执行 安全狗           #
@@ -416,6 +450,8 @@ clear;case "${SSR_OPTIONS}" in
 	Install_BBR;;
 	6)
 	Install_supervisor;;
+	7)
+	SS NODE Sql Mod;;
 	a)
 	Check_BBR_installation_status;;
 	b)
