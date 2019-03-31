@@ -193,7 +193,8 @@ Install_ss_node(){
 	#Installation_end_time=`date +"%Y-%m-%d %H:%M:%S"`;Install_end_time_stamp=`date +%s`
 	#The_installation_time=`expr ${Install_end_time_stamp} - ${Install_the_start_time_stamp}`
 	#clear;echo "安装开始时间:[${Setup_time}],安装结束时间:[${Installation_end_time}],耗时[${The_installation_time}]s."
-	echo "安装已完成"
+	echo "主题安装已完成,接下来安装BBR"
+	sleep 3
 }
 
 Edit_ss_node_info(){
