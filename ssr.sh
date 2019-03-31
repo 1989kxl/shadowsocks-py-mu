@@ -336,7 +336,9 @@ echo "ulimit -n 1024000" >> /etc/default/supervisor
 }
 
 SS_NODE_Sql_Mod(){
-                  bash /root/tools/shadowsocks_new.sh
+                  echo "请不要在此脚本中选择安装守护,主体安装完毕会提示安装守护!"
+	          sleep 3
+		  bash /root/tools/shadowsocks_new.sh
 		  
 		  
 		  sleep 3
