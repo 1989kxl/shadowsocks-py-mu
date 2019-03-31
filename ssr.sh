@@ -164,9 +164,30 @@ Install_ss_node(){
 	esac
 	
 	Unfile_number_limit
-	Add_swap_partition
-	Install_fail2ban
+	sleep 2.5
+	read -p "是否安装swap交换分区？(Y/n)" choice
+	case "${choice}" in
+	y|Y) Add_swap_partition;;
+	n|N) exit;;
+	*) exit;;
 	
+	sleep 2.5
+	
+	read -p "是否安装fail2ban防火墙？(Y/n)" choice
+	case "${choice}" in
+	y|Y) Install_fail2ban;;
+	n|N) exit;;
+	*) exit;;
+	
+	sleep 2.5
+	
+	read -p "是否安装supervisor守护？(Y/n)" choice
+        case "${choice}" in
+	y|Y) Install_supervisor;;
+	n|N) exit;;
+	*) exit;;
+	
+	sleep 2.5 
 	#Installation_end_time=`date +"%Y-%m-%d %H:%M:%S"`;Install_end_time_stamp=`date +%s`
 	#The_installation_time=`expr ${Install_end_time_stamp} - ${Install_the_start_time_stamp}`
 	#clear;echo "安装开始时间:[${Setup_time}],安装结束时间:[${Installation_end_time}],耗时[${The_installation_time}]s."
