@@ -167,7 +167,7 @@ Install_ss_node(){
 	sleep 2.5
 	read -p "是否安装swap交换分区？(Y/n)" choice
 	case "${choice}" in
-	y|Y) Add_swap_partition;;
+	y|Y) bash /root/tools/swap.sh;;
 	n|N) echo "跳过.";echo;;
 	*) echo "跳过.";echo;;
 	esac
