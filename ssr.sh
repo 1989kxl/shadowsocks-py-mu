@@ -311,7 +311,7 @@ echo -e "${GreenBG}重启服务/etc/init.d/supervisor restart ${Font}"
 echo -e "${GreenBG}重启飞机supervisorctl restart ssr ${Font}"
 echo -e "${GreenBG}服务状态supervisorctl status ${Font}"
 echo -e "${GreenBG}重载配置supervisorctl reload ${Font}"
-echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr${Font}"
+echo -e "${GreenBG}检查日志supervisorctl tail -f ssr stderr ${Font}"
             fi
 }
 
@@ -337,14 +337,14 @@ echo "ulimit -n 1024000" >> /etc/default/supervisor
 
 SS_NODE_Sql_Mod(){
                   echo "请选择2,务必选择2,你有10秒的时间复制下面的内容!"
+
+		  echo -e "${GreenBG}启动 shadowsocks ：./shadowsocks_new.sh start ${Font}"
+                  echo -e "${GreenBG}停止 shadowsocks ：./shadowsocks_new.sh stop ${Font}"
+                  echo -e "${GreenBG}重启 shadowsocks ：./shadowsocks_new.sh restart ${Font}"
+                  echo -e "${GreenBG}强制停止 shadowsocks ：./shadowsocks_new.sh fstop ${Font}"
+                  echo -e "${GreenBG}配置信息变更：./shadowsocks_new.sh modify ${Font}"
+                  echo -e "${GreenBG}日志 ：tail -f /var/log/sslog.txt ${Font}"
 		  sleep 10
-		  echo "启动 shadowsocks ：./shadowsocks_new.sh start"
-                  echo "停止 shadowsocks ：./shadowsocks_new.sh stop"
-                  echo "重启 shadowsocks ：./shadowsocks_new.sh restart"
-                  echo "强制停止 shadowsocks ：./shadowsocks_new.sh fstop"
-                  echo "配置信息变更：./shadowsocks_new.sh modify"
-                  echo "日志 ：tail -f /var/log/sslog.txt"
-		  sleep 5
 		  ./shadowsocks_new.sh install
 	          sleep 3
 		  bash /root/tools/shadowsocks_new.sh
