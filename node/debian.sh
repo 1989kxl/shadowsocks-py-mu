@@ -31,8 +31,8 @@ Setting_node_information(){
 
 install_node_for_debian(){
 	apt-get -y update;apt-get -y install build-essential wget python-dev libffi-dev python-pip openssl libssl-dev zip unzip git curl lsof
-	cd /root;wget https://github.com/1989kxl/libsodium/releases/download/1.0.17/libsodium-1.0.17.tar.gz
-	tar xf /root/libsodium-1.0.17.tar.gz;cd /root/libsodium-1.0.17;./configure;make -j2;make install;cd /root
+	cd /root;wget https://github.com/1989kxl/libsodium/releases/download/1.0.18/libsodium-1.0.18.tar.gz
+	tar xf /root/libsodium-1.0.18.tar.gz;cd /root/libsodium-1.0.18;./configure;make -j2;make install;cd /root
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf;ldconfig
 	pip install cymysql requests -i https://pypi.org/simple/
 	wget -O /usr/bin/shadowsocks "https://raw.githubusercontent.com/1989kxl/shadowsocks-py-mu/master/node/ss";chmod 777 /usr/bin/shadowsocks
