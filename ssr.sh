@@ -164,14 +164,14 @@ Install_ss_node(){
 	esac
 	
 	Unfile_number_limit
-	sleep 2.5
+	sleep 1.5
 	read -p "是否安装swap交换分区,单位为M,一般为内存的2倍,不支持ovz？(Y/n)" choice
 	case "${choice}" in
 	y|Y) Add_swap_partition;;
 	n|N) echo "跳过.";echo;;
 	*) echo "跳过.";echo;;
 	esac
-	sleep 2.5
+	sleep 1.5
 	
 	read -p "是否安装fail2ban防火墙？(Y/n)" choice
 	case "${choice}" in
@@ -179,7 +179,7 @@ Install_ss_node(){
 	n|N) echo "跳过.";echo;;
 	*) echo "跳过.";echo;;
 	esac
-	sleep 2.5
+	sleep 1.5
 	
 	read -p "是否安装supervisor守护？(Y/n)" choice
         case "${choice}" in
@@ -187,14 +187,14 @@ Install_ss_node(){
 	n|N) echo "跳过.";echo;;
 	*) echo "跳过.";echo;;
 	esac
-	sleep 2.5 
+	sleep 1.5 
 	
 	
 	#Installation_end_time=`date +"%Y-%m-%d %H:%M:%S"`;Install_end_time_stamp=`date +%s`
 	#The_installation_time=`expr ${Install_end_time_stamp} - ${Install_the_start_time_stamp}`
 	#clear;echo "安装开始时间:[${Setup_time}],安装结束时间:[${Installation_end_time}],耗时[${The_installation_time}]s."
 	echo "主体安装已完成,接下来安装BBR!"
-	sleep 3
+	sleep 2
 }
 
 Edit_ss_node_info(){
